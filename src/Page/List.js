@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+// import React, { useState, useEffect } from "react";
+// import { useLocation } from "react-router-dom";
 
-export default function List() {}
+// export default function List() {}
 //     const Listlist = (props) => {
 //         const location = useLocation();
 //         console.log(location);

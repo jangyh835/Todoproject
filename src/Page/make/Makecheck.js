@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-export default function Listdata({location}) {
-    // const location = useLocation();
+export default function Makecheck() {
+    const location = useLocation();
     const navigate = useNavigate();
 
     useEffect(() => {

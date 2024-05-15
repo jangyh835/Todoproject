@@ -1,30 +1,24 @@
-import React, { useState,useRef } from "react";
+import React,{useState} from "react";
 import { useNavigate } from "react-router-dom";
-import Makesavedata from "./Makesavedata";
+import Makeadd from "./Makeadd";
 
-export default function Make() {
-    const [Makeinput, setMakeinput] = useState({
+
+export default function Makemain(){
+    
+    const [Makeinput, setMakeinput] = useState({ 
+        key:"",
         important: "",
         content: "",
         description: "",
         dday: ""
     });
-    const [savedData, setSavedData] = useState([]);
-    const nextId = useRef(1);
-    const navigate = useNavigate();
-    function handleSubmit(e) {
-        e.preventDefault();
-        // 저장 코드 추가
-    }
-
-    function handleInputChange(field, e) {
-        // 입력값 변경 코드 추가
-    }
+    const navigate=useNavigate()
 
     function handleSubmit(e) {
         e.preventDefault();
-        navigate('./listdata', {
+        navigate('/checklist', {
             state: {
+                KEY: Makeinput.key,
                 IMPORTANT: Makeinput.important,
                 CONTENT: Makeinput.content,
                 DESCRIPTION: Makeinput.description,
@@ -32,46 +26,27 @@ export default function Make() {
             }
         });
     };
-    // const Navigate = ({ MakeInput }) => useNavigate('./listdata',
-    //     {
-    //         state: {
-    //             IMPROTANT: Makeinput.important, NAME: Makeinput.name,
-    //             DESCRIPTION: Makeinput.description, DDAY: Makeinput.dday
-    //         }
-    //     });
-    // function handleSubmit(e) {
-    //     e.preventDefault();// 버튼만 누르면 리프레시 되는것을 막아줌
-    //     console.log(Makeinput);
-    // };
     function handleInputChange(field, e) {
         setMakeinput((prevState) => ({
             ...prevState,
             [field]: e.target.value,
-        }));
+        }
+        ));
     };
-    function Showlist() {
-        const inputdata = {
-            id: nextId.current,
-            IMPORTANT: Makeinput.important,
-            CONTENT: Makeinput.content,
-            DESCRIPTION: Makeinput.description,
-            DDAY: Makeinput.dday
-        };
-        setSavedData((prevData) => [...prevData, inputdata]);
-        nextId.current += 1;
+    function RegisterButton(){
+        return<button type="submit">register</button>
     }
-
-    const Resetlist = () => {
+    function handleReset() {
         setMakeinput({
-            important: "",
-            content: "",
-            description: "",
-            dday: ""
-        });
-    };
-    return (
+            key:"",
+          important: "",
+          content: "",
+          description: "",
+          dday: ""
+        });}
+    return(
         <>
-            <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
                 <div>
                     <label>important:</label>
                     <input
@@ -107,15 +82,11 @@ export default function Make() {
                         placeholder="number"
                         onChange={(e) => handleInputChange("dday", e)}
                     />
-
                 </div>
-                <button type="submit">register</button>
-                {/* <button type="submit" onClick={() => Navigate({ Makeinput })}>register</button> */}
-            </form>
-            {/* <button onClick={handleSubmit}>register</button> */}
-                <button onClick={Showlist}>Add</button>
-                <button onClick={Resetlist}>Reset</button>
-            <p>{Makeinput.important && <Makesavedata Makeinput={Makeinput} />}</p>
-        </>);
+                <RegisterButton/>
+                </form>
+                <Makeadd setMakeinput={setMakeinput}/>
+                <button onClick={handleReset}>Reset</button>
+                </>
+    )
 }
-

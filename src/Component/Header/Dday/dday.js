@@ -10,7 +10,6 @@
 //     const day = startDate.getTime() - endDate.getTime();
 //     const dday = Math.trunc(Math.abs(day / (1000 * 3600 * 24)));
 //     return(
-
 //         <>
 //                 <div>{dday}</div>
 //         </>
