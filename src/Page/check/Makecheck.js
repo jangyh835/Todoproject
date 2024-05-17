@@ -1,5 +1,5 @@
-import React, {useState, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import React, {useState} from "react";
+import { useLocation } from "react-router-dom";
 import Checkcorrect from "./Checkcorrect";
 import Checkmodify from "./Checkmodify/Checkmodify";
 import Checkmodify1 from "./Checkmodify/Checkmodify1";
@@ -11,19 +11,34 @@ import Checkgolist from "./Checkgolist";
 
 export default function Makecheck() {
     const location = useLocation();
-    const index = [1,2,3,4]
-    const navigate = useNavigate();
     const [modifiedData, setModifiedData] = useState({
-        important: "",
-        content: "",
-        description: "",
-        dday: ""
+        important: location.state.important,
+        content: location.state.content,
+        description: location.state.description,
+        dday: location.state.dday
     });
+    
+    // useEffect(() => {
+    //     setModifiedData({
+    //         important: location.state.important,
+    //         content: location.state.content,
+    //         description: location.state.description,
+    //         dday: location.state.dday
+    //     });
+    // }, [location]);
 
-    useEffect(() => {
-        console.log(location);
-    }, [location])
-
+    function comeindata(uploaddata){
+        setModifiedData(uploaddata)
+    }
+    function comeindata1(uploaddata){
+        setModifiedData(uploaddata)
+    }
+    function comeindata2(uploaddata){
+        setModifiedData(uploaddata)
+    }
+    function comeindata3(uploaddata){
+        setModifiedData(uploaddata)
+    }
 
     // const handleClick = () => {
     //     navigate('../list', { state: location.state });
@@ -37,11 +52,12 @@ export default function Makecheck() {
     return (
         <>
             <div>
-                <div >IMPORTANT: {location.state.IMPORTANT}</div><Checkmodify important={location.state.IMPORTANT} />
-                <div >CONTENT: {location.state.CONTENT}</div><Checkmodify1 content={location.state.CONTENT}/>
-                <div >DESCRIPTION: {location.state.DESCRIPTION}</div><Checkmodify2 description={location.state.DESCRIPTION}/>
-                <div >DDAY: {location.state.DDAY}</div><Checkmodify3 dday={location.state.DDAY}/>
+                <div >IMPORTANT: {modifiedData.important}</div><Checkmodify comeindata={comeindata} important={modifiedData.important} />
+                <div >CONTENT: {modifiedData.content}</div><Checkmodify1 comeindata1={comeindata1} content={modifiedData.content}/>
+                <div >DESCRIPTION: {modifiedData.description}</div><Checkmodify2 comeindata2={comeindata2} description={modifiedData.description}/>
+                <div >DDAY: {modifiedData.dday}</div><Checkmodify3 comeindata3={comeindata3} dday={modifiedData.dday}/>
             </div>
+            <div>{modifiedData.important}{modifiedData.content}{modifiedData.description}{modifiedData.dday}</div>
             <Checkcorrect></Checkcorrect>
             <Checkgolist></Checkgolist>
         </>

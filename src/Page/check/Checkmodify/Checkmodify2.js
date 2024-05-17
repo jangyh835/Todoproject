@@ -1,25 +1,26 @@
 import React,{useState} from "react";
 
 
-export default function Checkmodify2({index,important, content, description, dday}) {
+export default function Checkmodify2({comeindata2, description}) {
     const [isactive,setIsactive]=useState(false)
     const [modifyinput,setModifyinput] =useState({ 
         key:"",
-        important: important,
-        content: content,
-        description: description,
-        dday: dday
+        important: comeindata2.important,
+        content: comeindata2.content,
+        description: comeindata2.description,
+        dday: comeindata2.dday
     });
     function handleInputChange(field, e) {
-        modifyinput((prevState) => ({
+        setModifyinput((prevState) => ({
             ...prevState,
             [field]: e.target.value,
         }
         ));}
-    function IntoModify({index,onShow}){
+    function IntoModify(){
         return(
 
-            isactive===true?                
+            isactive===true?      
+            <>          
             <div>
             <label>description:</label>
                     <input
@@ -28,7 +29,17 @@ export default function Checkmodify2({index,important, content, description, dda
                         placeholder="description"
                         onChange={(e) => handleInputChange("description", e)}
                     />
-                    </div>:<button onClick={()=>{!isactive}}></button>
+                    </div>:              <button onClick={()=>{setIsactive(!isactive);comeindata2({  // comeindata 함수 호출
+        important: modifyinput.important,
+        content: modifyinput.content,
+        description: modifyinput.description,
+        dday: modifyinput.dday
+    });}}>comfirm</button>
+                    </>
+              :
+              <>
+              <button onClick={()=>{setIsactive(!isactive);}}>modify</button>
+              </>
                     
         )
     }

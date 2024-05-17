@@ -1,6 +1,7 @@
 import React,{ useState }   from "react";
 import Makedelete from "./Makedelete";
 import Makemodify from "./Makemodify";
+import Makedeleteall from "./Makedeleteall";
 
 export default function Makeadd({ Makeinput, setMakeinput }){
     const [savemake,setSavemake] = useState([]);
@@ -40,6 +41,10 @@ export default function Makeadd({ Makeinput, setMakeinput }){
         
     };
 
+    function Uploaddel(Savedata){
+        setSavemake(Savedata)
+    }
+
     return(<>
         <button onClick={handleAdd}>Add</button>
     <div >
@@ -48,6 +53,6 @@ export default function Makeadd({ Makeinput, setMakeinput }){
             <Makedelete i={i} savemake={savemake} setSavemake={setSavemake}></Makedelete><Makemodify i={i} savemake={savemake} setSavemake={setSavemake}></Makemodify></div>
     )})}
     </div>
-
+    <Makedeleteall Uploaddel={Uploaddel}></Makedeleteall>
     </>)
 }
