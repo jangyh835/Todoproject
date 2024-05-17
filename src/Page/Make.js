@@ -9,6 +9,7 @@ export default function Make() {
         description: "",
         dday: ""
     });
+<<<<<<< branch3:src/Page/Make.js
     const [savedData, setSavedData] = useState([]);
     const nextId = useRef(1);
     const navigate = useNavigate();
@@ -31,6 +32,29 @@ export default function Make() {
                 DDAY: Makeinput.dday
             }
         });
+=======
+
+    const navigate=useNavigate()
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        // if (!Makeinput.trim()) {
+        //     return; // 입력 값이 공백이면 처리 중지
+        //   }
+        if ( Makeinput.important && Makeinput.content && Makeinput.description && Makeinput.dday) {
+            // navigate 호출
+            navigate('/checklist', {
+                state: {
+                    IMPORTANT: Makeinput.important,
+                    CONTENT: Makeinput.content,
+                    DESCRIPTION: Makeinput.description,
+                    DDAY: Makeinput.dday
+                }
+            });
+        } else {
+            console.error('Makeinput 객체의 일부 속성이 비어 있습니다.');
+        }
+>>>>>>> local:src/Page/make/Makemain.js
     };
     // const Navigate = ({ MakeInput }) => useNavigate('./listdata',
     //     {
@@ -49,6 +73,7 @@ export default function Make() {
             [field]: e.target.value,
         }));
     };
+<<<<<<< branch3:src/Page/Make.js
     function Showlist() {
         const inputdata = {
             id: nextId.current,
@@ -59,6 +84,10 @@ export default function Make() {
         };
         setSavedData((prevData) => [...prevData, inputdata]);
         nextId.current += 1;
+=======
+    function CheckButton(){
+        return<button type="submit">Check</button>
+>>>>>>> local:src/Page/make/Makemain.js
     }
 
     const Resetlist = () => {
@@ -109,6 +138,7 @@ export default function Make() {
                     />
 
                 </div>
+<<<<<<< branch3:src/Page/Make.js
                 <button type="submit">register</button>
                 {/* <button type="submit" onClick={() => Navigate({ Makeinput })}>register</button> */}
             </form>
@@ -119,3 +149,12 @@ export default function Make() {
         </>);
 }
 
+=======
+                <CheckButton/>
+                </form>
+                <Makeadd Makeinput={Makeinput} setMakeinput={setMakeinput}/>
+                <button onClick={handleReset}>Reset</button>
+                </>
+    )
+}
+>>>>>>> local:src/Page/make/Makemain.js
